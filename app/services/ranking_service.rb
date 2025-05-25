@@ -25,12 +25,18 @@ class RankingService
           adjust_ranks_for_draw(higher_ranked_player, lower_ranked_player)
 
         else
-          # Otherwise, lower ranked player won — adjust ranks with rank swapping logic
+          # Otherwise, lower ranked player won - adjust ranks with rank swapping logic
           adjust_ranks_for_lower_win(higher_ranked_player, lower_ranked_player)
         end
 
         # Normalize all ranks to ensure uniqueness and sequential order
         normalize_ranks!
+      end
+    end
+
+    def normalize_ranks!
+      Member.order(:current_rank).each_with_index do |member, idx|
+        member.update_column(:current_rank, idx + 1)
       end
     end
 
@@ -87,12 +93,6 @@ class RankingService
       return false unless match.player_one.current_rank && match.player_two.current_rank
       return false unless valid_result?(match.result)
       true
-    end
-
-    def normalize_ranks!
-      Member.order(:current_rank).each_with_index do |member, idx|
-        member.update_column(:current_rank, idx + 1)
-      end
     end
 
     def member_above(lower_ranked_player)

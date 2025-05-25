@@ -1,0 +1,26 @@
+<% content_for :title, "Leaderboard" %>
+
+<h1 class="display-4 mb-4 text-center">Chess Club Leaderboard</h1>
+  <div class="mb-4 text-end">
+    <%= link_to "Add New Member", new_member_path, class: "btn btn-success" %>
+    <%= link_to "Record a Match", new_match_path, class: "btn btn-primary" %>
+  </div>
+<table class="table table-striped table-bordered align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Name</th>
+      <th scope="col">Games Played</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.current_rank %></td>
+        <td><%= link_to member.full_name, edit_member_path(member), class: "text-decoration-underline text-primary fw-semibold" %></td>
+        <td><%= member.games_played %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
