@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  resources :members
+  root to: 'members#leaderboard'
+  resources :members do
+    resources :matches, only: [:index, :create]
+    collection do
+      get 'rankings', to: 'members#rankings'
+      get 'leaderboard', to: 'members#leaderboard', as: :leaderboard
+    end
+  end
+  resources :matches, only: [:index, :show, :new, :create] do
+    member do
+      post 'update_result', to: 'matches#update_result'
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

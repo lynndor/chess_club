@@ -1,16 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<div class="container py-4">
+  <p class="text-success"><%= notice %></p>
 
-<% content_for :title, "Members" %>
+  <% content_for :title, "Members" %>
 
-<h1>Members</h1>
+  <h1 class="h2 mb-4 display-4 mb-4 text-center">Members</h1>
 
-<div id="members">
-  <% @members.each do |member| %>
-    <%= render member %>
-    <p>
-      <%= link_to "Show this member", member %>
-    </p>
-  <% end %>
+  <div class="mb-4 d-flex justify-content-end gap-2">
+    <%= link_to "Add New Member", new_member_path, class: "btn btn-success" %>
+    <%= link_to "Record a Match", new_match_path, class: "btn btn-primary" %>
+  </div>
+
+  <div id="members" class="row g-4">
+    <% @members.each do |member| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div class="mb-2">
+              <label class="form-label fw-bold mb-0">Name</label>
+              <p class="form-control-plaintext py-0 mb-4"><%= member.name %></p>
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label fw-bold mb-0">Email</label>
+              <p class="form-control-plaintext py-0 mb-2"><%= member.email %></p>
+            </div>
+
+            <div class="text-end">
+              <%= link_to "Show this member", member, class: "btn btn-link p-0" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New member", new_member_path %>

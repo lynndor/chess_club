@@ -1,32 +1,25 @@
-<div id="<%= dom_id member %>">
-  <p>
-    <strong>Name:</strong>
-    <%= member.name %>
-  </p>
+<div id="<%= dom_id member %>" class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <dl class="row">
+        <dt class="col-6 fw-semibold text-secondary">Name:</dt>
+        <dd class="col-6 text-dark"><%= member.name %></dd>
 
-  <p>
-    <strong>Surname:</strong>
-    <%= member.surname %>
-  </p>
+        <dt class="col-6 fw-semibold text-secondary">Surname:</dt>
+        <dd class="col-6 text-dark"><%= member.surname %></dd>
 
-  <p>
-    <strong>Email:</strong>
-    <%= member.email %>
-  </p>
+        <dt class="col-6 fw-semibold text-secondary">Email:</dt>
+        <dd class="col-6 text-dark"><%= member.email %></dd>
 
-  <p>
-    <strong>Birthday:</strong>
-    <%= member.birthday %>
-  </p>
+        <dt class="col-6 fw-semibold text-secondary">Birthday:</dt>
+        <dd class="col-6 text-dark"><%= member.birthday %></dd>
 
-  <p>
-    <strong>Games played:</strong>
-    <%= member.games_played %>
-  </p>
+        <dt class="col-6 fw-semibold text-secondary">Games played:</dt>
+        <dd class="col-6 text-dark"><%= member.games_played %></dd>
 
-  <p>
-    <strong>Current rank:</strong>
-    <%= member.current_rank %>
-  </p>
-
+        <dt class="col-6 fw-semibold text-secondary">Current rank:</dt>
+        <dd class="col-6 text-dark"><%= member.current_rank %></dd>
+      </dl>
+    </div>
+  </div>
 </div>

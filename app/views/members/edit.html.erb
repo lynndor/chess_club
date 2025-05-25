@@ -1,12 +1,54 @@
-<% content_for :title, "Editing member" %>
+<div class="container py-5">
+  <div class="mb-4">
+    <%= link_to "← Back to Members", members_path, class: "btn btn-outline-primary" %>
+  </div>
 
-<h1>Editing member</h1>
+  <% content_for :title, "Editing Member" %>
 
-<%= render "form", member: @member %>
+  <h1 class="h2 mb-4 display-4 mb-4 text-center">Editing Member</h1>
 
-<br>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <%= form_with(model: @member, local: true) do |form| %>
+        <div class="mb-3">
+          <%= form.label :name, class: "form-label fw-semibold" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
 
-<div>
-  <%= link_to "Show this member", @member %> |
-  <%= link_to "Back to members", members_path %>
+        <div class="mb-3">
+          <%= form.label :surname, class: "form-label fw-semibold" %>
+          <%= form.text_field :surname, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :email, class: "form-label fw-semibold" %>
+          <%= form.email_field :email, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :birthday, class: "form-label fw-semibold" %>
+          <%= form.date_field :birthday, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :games_played, class: "form-label fw-semibold" %>
+          <%= form.number_field :games_played, class: "form-control" %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :current_rank, class: "form-label fw-semibold" %>
+          <%= form.text_field :current_rank, class: "form-control" %>
+        </div>
+
+        <div class="d-grid">
+          <%= form.submit "Save Changes", class: "btn btn-success btn-lg" %>
+        </div>
+      <% end %>
+
+      <div class="mt-4 d-flex gap-2 justify-content-center">
+        <%= link_to "Show this member", @member, class: "btn btn-primary" %>
+        <%= link_to "Back to members", members_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
 </div>
