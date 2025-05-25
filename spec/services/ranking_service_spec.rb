@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe RankingService do
-  let!(:player1) { Member.create!(name: 'A', surname: 'A', email: 'a@example.com', current_rank: 1) }
-  let!(:player2) { Member.create!(name: 'B', surname: 'B', email: 'b@example.com', current_rank: 2) }
-  let!(:player3) { Member.create!(name: 'C', surname: 'C', email: 'c@example.com', current_rank: 3) }
+  let!(:player1) { Member.create!(name: 'Magnus', surname: 'Carlsen', email: 'magnus.carlsen@example.com', current_rank: 1) }
+  let!(:player2) { Member.create!(name: 'Hikaru', surname: 'Nakamura', email: 'hikaru.nakamura@example.com', current_rank: 2) }
+  let!(:player3) { Member.create!(name: 'Fabiano', surname: 'Caruana', email: 'fabiano.caruana@example.com', current_rank: 3) }
 
   def reload_players
     [player1, player2, player3].each(&:reload)
@@ -37,7 +37,7 @@ RSpec.describe RankingService do
       match = Match.create!(player_one: player1, player_two: player3, result: 'draw')
       RankingService.update_rankings!(match)
       reload_players
-      puts "Ranks after draw: #{[player1.current_rank, player2.current_rank, player3.current_rank]}"
+
       expect(player3.current_rank).to eq(2)
       expect(player1.current_rank).to eq(1)
     end
@@ -87,5 +87,17 @@ RSpec.describe RankingService do
     expect(ranks).to eq((1..16).to_a)
     expect(player_16.current_rank).to eq(13)
     expect(player_10.current_rank).to eq(11)
+  end
+
+  it 'increments games_played for both players when a match is processed' do
+    Member.delete_all
+    player1 = Member.create!(name: 'Magnus', surname: 'Carlsen', email: 'magnus.carlsen@example.com', current_rank: 1, games_played: 0)
+    player2 = Member.create!(name: 'Hikaru', surname: 'Nakamura', email: 'hikaru.nakamura@example.com', current_rank: 2, games_played: 0)
+    match = Match.create!(player_one: player1, player_two: player2, result: 'player_one_wins')
+    expect {
+      RankingService.update_rankings!(match)
+      player1.reload
+      player2.reload
+    }.to change { [player1.games_played, player2.games_played] }.from([0, 0]).to([1, 1])
   end
 end

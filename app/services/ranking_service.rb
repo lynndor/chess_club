@@ -7,6 +7,10 @@ class RankingService
       player_one = match.player_one
       player_two = match.player_two
 
+      # Increment games played for both players
+      player_one.increment!(:games_played)
+      player_two.increment!(:games_played)
+
       #Sort players by their current rank to identify higher and lower ranked players
       higher_ranked_player, lower_ranked_player = order_by_rank(player_one, player_two)
 
