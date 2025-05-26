@@ -1,4 +1,4 @@
-class CreateMatches < ActiveRecord::Migration[8.0]
+class CreateMatches < ActiveRecord::Migration[7.1]
   def change
     create_table :matches do |t|
       t.integer :player_one_id
