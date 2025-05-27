@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  surname: MyString
-  email: MyString
-  birthday: 2025-05-24
-  games_played: 1
+  name: Magnus
+  surname: Carlsen
+  email: magnus.carlsen@example.com
+  birthday: 1990-11-30
+  games_played: 10
   current_rank: 1
 
 two:
-  name: MyString
-  surname: MyString
-  email: MyString
-  birthday: 2025-05-24
-  games_played: 1
-  current_rank: 1
+  name: Hikaru
+  surname: Nakamura
+  email: hikaru.nakamura@example.com
+  birthday: 1987-12-09
+  games_played: 8
+  current_rank: 2
