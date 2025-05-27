@@ -12,15 +12,15 @@ class MembersTest < ApplicationSystemTestCase
 
   test "should create member" do
     visit members_url
-    click_on "New member"
+    click_on "Add New Member"
 
     fill_in "Birthday", with: @member.birthday
     fill_in "Current rank", with: @member.current_rank
-    fill_in "Email", with: @member.email
+    fill_in "Email", with: "test_email@example.com"
     fill_in "Games played", with: @member.games_played
     fill_in "Name", with: @member.name
     fill_in "Surname", with: @member.surname
-    click_on "Create Member"
+    click_on "Save Changes"
 
     assert_text "Member was successfully created"
     click_on "Back"
@@ -36,7 +36,7 @@ class MembersTest < ApplicationSystemTestCase
     fill_in "Games played", with: @member.games_played
     fill_in "Name", with: @member.name
     fill_in "Surname", with: @member.surname
-    click_on "Update Member"
+    click_on "Save Changes"
 
     assert_text "Member was successfully updated"
     click_on "Back"
