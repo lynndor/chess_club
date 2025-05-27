@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  root to: 'members#leaderboard'
+  root to: "members#leaderboard"
   resources :members do
-    resources :matches, only: [:index, :create]
+    resources :matches, only: [ :index, :create ]
     collection do
-      get 'rankings', to: 'members#rankings'
-      get 'leaderboard', to: 'members#leaderboard', as: :leaderboard
+      get "rankings", to: "members#rankings"
+      get "leaderboard", to: "members#leaderboard", as: :leaderboard
     end
   end
-  resources :matches, only: [:index, :show, :new, :create] do
+  resources :matches, only: [ :index, :show, :new, :create ] do
     member do
-      post 'update_result', to: 'matches#update_result'
+      post "update_result", to: "matches#update_result"
     end
   end
 

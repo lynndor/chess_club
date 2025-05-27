@@ -6,7 +6,7 @@ RSpec.describe RankingService do
   let!(:player3) { Member.create!(name: 'Fabiano', surname: 'Caruana', email: 'fabiano.caruana@example.com', current_rank: 3) }
 
   def reload_players
-    [player1, player2, player3].each(&:reload)
+    [ player1, player2, player3 ].each(&:reload)
   end
 
   context 'when higher-ranked player wins' do
@@ -15,7 +15,7 @@ RSpec.describe RankingService do
       expect {
         RankingService.update_rankings!(match)
         reload_players
-      }.not_to change { [player1.current_rank, player2.current_rank, player3.current_rank] }
+      }.not_to change { [ player1.current_rank, player2.current_rank, player3.current_rank ] }
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe RankingService do
       expect {
         RankingService.update_rankings!(match)
         reload_players
-      }.not_to change { [player2.current_rank, player3.current_rank] }
+      }.not_to change { [ player2.current_rank, player3.current_rank ] }
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe RankingService do
     player3.update!(current_rank: 15)
     RankingService.send(:normalize_ranks!)
     reload_players
-    expect([player1.current_rank, player2.current_rank, player3.current_rank]).to eq([1,2,3])
+    expect([ player1.current_rank, player2.current_rank, player3.current_rank ]).to eq([ 1, 2, 3 ])
   end
 
   it 'correctly updates ranks when 16th beats 10th among 16 members' do
@@ -98,6 +98,6 @@ RSpec.describe RankingService do
       RankingService.update_rankings!(match)
       player1.reload
       player2.reload
-    }.to change { [player1.games_played, player2.games_played] }.from([0, 0]).to([1, 1])
+    }.to change { [ player1.games_played, player2.games_played ] }.from([ 0, 0 ]).to([ 1, 1 ])
   end
 end

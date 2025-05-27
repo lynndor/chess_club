@@ -8,7 +8,7 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
     if @match.save
       RankingService.update_rankings!(@match)
-      redirect_to leaderboard_members_path, notice: 'Match was successfully recorded and rankings updated.'
+      redirect_to leaderboard_members_path, notice: "Match was successfully recorded and rankings updated."
     else
       @members = Member.order(:current_rank)
       render :new, status: :unprocessable_entity

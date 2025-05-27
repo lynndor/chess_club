@@ -11,7 +11,7 @@ class RankingService
       player_one.increment!(:games_played)
       player_two.increment!(:games_played)
 
-      #Sort players by their current rank to identify higher and lower ranked players
+      # Sort players by their current rank to identify higher and lower ranked players
       higher_ranked_player, lower_ranked_player = order_by_rank(player_one, player_two)
 
       ActiveRecord::Base.transaction do
@@ -21,7 +21,7 @@ class RankingService
           return
 
         # If it's a draw, adjust ranks accordingly (typically moving the lower player up)
-        when 'draw'
+        when "draw"
           adjust_ranks_for_draw(higher_ranked_player, lower_ranked_player)
 
         else
@@ -43,14 +43,14 @@ class RankingService
     private
 
     def order_by_rank(player_one, player_two)
-      [player_one, player_two].sort_by(&:current_rank)
+      [ player_one, player_two ].sort_by(&:current_rank)
     end
 
     def higher_player_win(higher_ranked_player, match)
       if higher_ranked_player == match.player_one
-        'player_one_wins'
+        "player_one_wins"
       else
-        'player_two_wins'
+        "player_two_wins"
       end
     end
 
@@ -100,7 +100,7 @@ class RankingService
     end
 
     def shift_members_up_between(start_rank, end_rank)
-      Member.where(current_rank: start_rank...end_rank).update_all('current_rank = current_rank + 1')
+      Member.where(current_rank: start_rank...end_rank).update_all("current_rank = current_rank + 1")
     end
 
     def valid_result?(result)

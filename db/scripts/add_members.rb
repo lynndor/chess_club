@@ -2,22 +2,22 @@
 # Run with: rails runner db/scripts/add_members.rb
 
 names = [
-  ["Magnus", "Carlsen"],
-  ["Hikaru", "Nakamura"],
-  ["Fabiano", "Caruana"],
-  ["Ian", "Nepomniachtchi"],
-  ["Ding", "Liren"],
-  ["Anish", "Giri"],
-  ["Levon", "Aronian"],
-  ["Wesley", "So"],
-  ["Teimour", "Radjabov"],
-  ["Shakhriyar", "Mamedyarov"],
-  ["Maxime", "Vachier-Lagrave"],
-  ["Sergey", "Karjakin"],
-  ["Viswanathan", "Anand"],
-  ["Richard", "Rapport"],
-  ["Jan-Krzysztof", "Duda"],
-  ["Alireza", "Firouzja"]
+  [ "Magnus", "Carlsen" ],
+  [ "Hikaru", "Nakamura" ],
+  [ "Fabiano", "Caruana" ],
+  [ "Ian", "Nepomniachtchi" ],
+  [ "Ding", "Liren" ],
+  [ "Anish", "Giri" ],
+  [ "Levon", "Aronian" ],
+  [ "Wesley", "So" ],
+  [ "Teimour", "Radjabov" ],
+  [ "Shakhriyar", "Mamedyarov" ],
+  [ "Maxime", "Vachier-Lagrave" ],
+  [ "Sergey", "Karjakin" ],
+  [ "Viswanathan", "Anand" ],
+  [ "Richard", "Rapport" ],
+  [ "Jan-Krzysztof", "Duda" ],
+  [ "Alireza", "Firouzja" ]
 ]
 
 names.each_with_index do |(first, last), idx|
